@@ -1,3 +1,5 @@
+This program is mainly to rename a series en masse
+
 Please make sure the folder in which the items you want to download is in the downloads folder.
 This program assumes and is dependant on the fact that the destination of the file is in hard drive C: AND the Downloads folder.
 Please note if the program encounters an error that you typed everything in properly.
