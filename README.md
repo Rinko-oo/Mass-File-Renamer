@@ -9,4 +9,4 @@ Second last note is that this isn't a file reformatter so don't try to change up
 Last note is that this program doesn't take decimals into consideration - Only integers
 Honestly there might be a few typos
 
-If there are any problems contact me @ fr.scenery@gmail.com or rinko__ on discord
+If there are any problems contact me @ rinko__ on discord
