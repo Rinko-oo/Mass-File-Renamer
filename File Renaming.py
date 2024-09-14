@@ -38,7 +38,7 @@ while ValidType == False:
     elif type == 'OTHER' or type == 'O':
         ValidType = True
         print('Note that there is no secondary prefix.')
-        prefix = input('Enter your desired prefix: ')
+        prefix = input('Enter your desired prefix (Enter nothing for blank): ')
     elif type == 'PREFIX' or type == 'P' or type == 'PREFIXES':
         print()
         print('PREFIXES')
@@ -46,11 +46,12 @@ while ValidType == False:
         print('Comic: Issue')
         print('Manga: v')
         print('Other: Custom (You pick)')
+        print()
     else:
         print('Selection invalid. Please check spelling or enter correct type.')
         print()
 while ValidUser == False:
-    username = str(input('Enter the first 5 letters of the username on the computer file: '))
+    username = str(input('Enter the first 5 letters of the username on the computer file (File Manager > This PC > Your Hard Drive > Users): '))
     username = username.lower()
     NameCount = 0
     for i in username:
@@ -65,7 +66,7 @@ while ValidUser == False:
         print()
 folder = str(input('Enter the folder\'s name: '))
 destination = str('C:/Users/' + username + '/Downloads/' + folder + '/')
-SeriesName = str(input('Enter The Series Name (This is the new name for your series): '))
+SeriesName = str(input('Enter The Series Name (This is the name of your series): '))
 if type == 'TV':
     Season = str(input('Enter the season: '))
 while ValidInstallment == False:
@@ -75,7 +76,7 @@ while ValidInstallment == False:
         print('MUST BE NUMBER')
     else:
         ValidInstallment = True
-FileType = str(input('Finally, input the format of the files (Don\'t include the period): '))
+FileType = str(input('Finally, input the format of the files (Don\'t include the period) (Blank for folders): '))
 FileList = os.listdir(destination)
 filecount = 0
 for i in FileList:
@@ -83,23 +84,27 @@ for i in FileList:
 if type == 'TV':
     for i in FileList:
         file = destination + i
-        if filecount < 100:
+        if filecount < 10:
+            newname = destination + '/' + SeriesName + ' {}{}E{}.{}'.format(prefix, Season, installment, FileType)
+        elif filecount < 100:
             if installment < 10:
                 newname = destination + '/' + SeriesName + ' {}{}E0{}.{}'.format(prefix, Season, installment, FileType)
             else:
                 newname = destination + '/' + SeriesName + ' {}{}E{}.{}'.format(prefix, Season, installment, FileType)
-        elif filecount > 100:
+        elif filecount < 1000:
             if installment < 10:
                 newname = destination + '/' + SeriesName + ' {}{}E00{}.{}'.format(prefix, Season, installment, FileType)
-            elif installment > 10 and installment < 100:
-                newname = destination + '/' + SeriesName + ' {}{}E{}.{}'.format(prefix, Season, installment, FileType)
+            elif installment < 100:
+                newname = destination + '/' + SeriesName + ' {}{}E0{}.{}'.format(prefix, Season, installment, FileType)
             else:
                 newname = destination + '/' + SeriesName + ' {}{}E{}.{}'.format(prefix, Season, installment, FileType)
-        elif filecount > 100:
+        elif filecount < 10000:
             if installment < 10:
+                newname = destination + '/' + SeriesName + ' {}{}E000{}.{}'.format(prefix, Season, installment, FileType)
+            elif installment < 100:
                 newname = destination + '/' + SeriesName + ' {}{}E00{}.{}'.format(prefix, Season, installment, FileType)
-            elif installment > 10 and installment < 100:
-                newname = destination + '/' + SeriesName + ' {}{}E{}.{}'.format(prefix, Season, installment, FileType)
+            elif installment < 1000:
+                newname = destination + '/' + SeriesName + ' {}{}E0{}.{}'.format(prefix, Season, installment, FileType)
             else:
                 newname = destination + '/' + SeriesName + ' {}{}E{}.{}'.format(prefix, Season, installment, FileType)
         os.rename(file, newname)
@@ -107,23 +112,29 @@ if type == 'TV':
 else:
     for i in FileList:
         file = destination + i
-        if filecount < 100:
+        if filecount < 10:
+            newname = destination + '/' + SeriesName + ' {}{}.{}'.format(prefix, installment, FileType)
+        elif filecount < 100:
             if installment < 10:
                 newname = destination + '/' + SeriesName + ' {}0{}.{}'.format(prefix, installment, FileType)
             else:
                 newname = destination + '/' + SeriesName + ' {}{}.{}'.format(prefix, installment, FileType)
-        elif filecount > 100:
+        elif filecount < 1000:
             if installment < 10:
                 newname = destination + '/' + SeriesName + ' {}00{}.{}'.format(prefix, installment, FileType)
-            elif installment > 10 and installment < 100:
+            elif installment < 100:
                 newname = destination + '/' + SeriesName + ' {}0{}.{}'.format(prefix, installment, FileType)
-            else: newname = destination + '/' + SeriesName + ' {}{}.{}'.format(prefix, installment, FileType)
-        elif filecount > 100:
+            else:
+                newname = destination + '/' + SeriesName + ' {}{}.{}'.format(prefix, installment, FileType)
+        elif filecount < 10000:
             if installment < 10:
+                newname = destination + '/' + SeriesName + ' {}000{}.{}'.format(prefix, installment, FileType)
+            elif installment < 100:
                 newname = destination + '/' + SeriesName + ' {}00{}.{}'.format(prefix, installment, FileType)
-            elif installment > 10 and installment < 100:
+            elif installment < 1000:
                 newname = destination + '/' + SeriesName + ' {}0{}.{}'.format(prefix, installment, FileType)
-            else: newname = destination + '/' + SeriesName + ' {}{}.{}'.format(prefix, installment, FileType)
+            else:
+                newname = destination + '/' + SeriesName + ' {}{}.{}'.format(prefix, installment, FileType)
         os.rename(file, newname)
         installment += 1
     print()
